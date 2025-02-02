@@ -1,76 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PhoneInputField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController countryCodeController;
+  final TextEditingController phoneController;
   final String hintText;
 
-  PhoneInputField({required this.controller, required this.hintText});
+  PhoneInputField({
+    required this.countryCodeController,
+    required this.phoneController,
+    required this.hintText,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // Hardcoded Egypt country code (+20)
+        // Country Code Input Field (+20)
         Container(
-          width: 66.w,
-          height: 46.h,
+          width: 66.0, // Set a fixed width for the country code input
+          height: 44.0, // Set the same height as phone number input
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(8.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                blurRadius: 5.0,
+                spreadRadius: 1.0,
+              ),
+            ],
           ),
-          child: Center(
-            child: Text(
-              '+20', // Egypt country code
-              style: TextStyle(
-                  fontSize: 18.sp, color: Color(0xFF052A43).withOpacity(0.36)),
+          child: TextField(
+            controller: countryCodeController,
+            decoration: InputDecoration(
+              hintText: '+20', // Egypt country code
+              hintStyle: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Comfortaa',
+                color: Color(0xFFAFB8BD), // Text color
+              ),
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
             ),
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Comfortaa',
+              color: Color(0xFFAFB8BD), // Text color
+            ),
+            textAlign: TextAlign.center,
+            enabled: false, // Make it non-editable
           ),
         ),
-        SizedBox(width: 12.w),
-        // Phone number input with same height as country code
+        SizedBox(width: 15.0), // Space between country code and phone number fields
+
+        // Phone Number Input Field
         Expanded(
           child: Container(
-            height: 46.h, // Match the height of the country code container
+            height: 44.0, // Same height as country code input
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.1),
+                  blurRadius: 5.0,
+                  spreadRadius: 1.0,
+                ),
+              ],
+            ),
             child: TextField(
-              controller: controller,
+              controller: phoneController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
                 hintText: hintText,
-                labelText: hintText,
-                floatingLabelBehavior: FloatingLabelBehavior.auto,
-                labelStyle: TextStyle(
-                  color: Color(0xFF052A43).withOpacity(0.36),
-                  fontSize: 16.0,
-                ),
-                floatingLabelStyle: TextStyle(
-                  fontSize: 23.0,
-                  color: Color(0xFF052A43).withOpacity(0.36),
-                  backgroundColor: Colors.white,
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color(0xFF052A43).withOpacity(0.36),
-                  ),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color(0xFF052A43),
-                  ),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
                 hintStyle: TextStyle(
-                  color: Colors.transparent,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Comfortaa',
+                  color: Color(0xFFAFB8BD), // Text color
                 ),
-                alignLabelWithHint: true,
-                isDense: true,
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
               ),
-              style: TextStyle(color: Color(0xFF052A43).withOpacity(0.36)),
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Comfortaa',
+                color: Color(0xFFAFB8BD), // Text color
+              ),
             ),
           ),
         ),

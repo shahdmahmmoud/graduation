@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  CustomButton({
+  const CustomButton({
     required this.text,
     required this.onPressed,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: 298.w, // Responsive width
+      height: 44.h,  // Responsive height
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(
@@ -20,16 +23,16 @@ class CustomButton extends StatelessWidget {
           style: TextStyle(
             fontFamily: 'Comfortaa',
             fontWeight: FontWeight.w600, // Semi-bold weight
-            fontSize: 20.0,
-            color: Color(0xff052A43),
+            fontSize: 20.sp, // Responsive font size
+            color: const Color(0xff052A43),
           ),
         ),
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(vertical: 10.0),
-          backgroundColor: Color(0xffFDC70A),
+          backgroundColor: const Color(0xffFDC70A),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.0),
+            borderRadius: BorderRadius.circular(15.r), // Responsive radius
           ),
+          elevation: 0, // Remove shadow if needed
         ),
       ),
     );

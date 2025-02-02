@@ -17,13 +17,14 @@ class CustomToggle extends StatelessWidget {
       onTap: onToggle,
       child: Container(
         width: double.infinity,
-        height: 46.h, // Same height as the text field
+        height: 46.h, // Outer container height
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xff052A43), // Default navy blue background
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Stack(
           children: [
+            // The animated white background for the selected toggle
             AnimatedAlign(
               alignment: isEmailSelected
                   ? Alignment.centerLeft
@@ -31,16 +32,15 @@ class CustomToggle extends StatelessWidget {
               duration: Duration(milliseconds: 200),
               curve: Curves.easeInOut,
               child: Container(
-                width: 0.5.sw, // Make it half the width of the container
-                height: 56.h,
+                width: 0.45.sw, // Half the width of the container
+                height: 44.h, // White background height
                 decoration: BoxDecoration(
-                  color: isEmailSelected
-                      ? Color(0xff052A43)
-                      : Color(0xff052A43), // Keep it navy for both
+                  color: Colors.white, // White for the selected side
                   borderRadius: BorderRadius.circular(10.r),
                 ),
               ),
             ),
+            // Text for Email and Phone
             Align(
               alignment: Alignment.center,
               child: Row(
@@ -53,8 +53,8 @@ class CustomToggle extends StatelessWidget {
                         'Email',
                         style: TextStyle(
                           color: isEmailSelected
-                              ? Colors.white
-                              : Color(0xff052A43),
+                              ? Color(0xff052A43) // Navy blue text for selected
+                              : Colors.white, // White text for unselected
                           fontSize: 16.sp,
                           fontFamily: 'Comfortaa',
                         ),
@@ -69,8 +69,8 @@ class CustomToggle extends StatelessWidget {
                         'Phone',
                         style: TextStyle(
                           color: isEmailSelected
-                              ? Color(0xff052A43)
-                              : Colors.white,
+                              ? Colors.white // White text for unselected
+                              : Color(0xff052A43), // Navy blue text for selected
                           fontSize: 16.sp,
                           fontFamily: 'Comfortaa',
                         ),
